@@ -1,27 +1,37 @@
 import { Chart } from '@antv/g2';
-export const renderChart = () => {
+import { CovidData } from './model/CovidData';
 
-    const data = [
-        { year: '1951 年', sales: 38 },
-        { year: '1952 年', sales: 52 },
-        { year: '1956 年', sales: 61 },
-        { year: '1957 年', sales: 145 },
-        { year: '1958 年', sales: 48 },
-        { year: '1959 年', sales: 38 },
-        { year: '1960 年', sales: 38 },
-        { year: '1962 年', sales: 38 },
-      ];
-      
+export class MyChart {
+    constructor(
+        private config: {
+            container: string;
+            covidData: CovidData;
+            /**
+             * e.g. newCases
+             */
+            yAxisMetrics: string;
+        }
+    ) {}
+
+    renderChart = () => {
       const chart = new Chart({
-        container: 'chart01',
+        container: this.config.container,
         width: 400,
         height: 300,
         autoFit: true,
       });
-      
-      chart.interval().data(data).encode('x', 'year').encode('y', 'sales');
+
+      chart.interval().data(this.config.covidData.data)
+          .encode('x', 'date')
+          .encode('y', this.config.yAxisMetrics);
       
       chart.render();
+    }
 
-
+    destroy = () => {
+      // TODO:
+    }
 }
+
+
+
