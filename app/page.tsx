@@ -1,28 +1,25 @@
 "use client"
 import React, { useEffect, useRef, useState } from 'react';
 import {
-  Button,
   Card,
   Row,
   Col,
-  Flex,
-  Typography,
 } from 'antd';
 import { MyChart } from './chart';
 import { CovidDatasource, Datasource } from './datasource';
 import { CovidData } from './model/CovidData';
 import { STRING_RESOURCES } from './string-resources';
 import { ChartState } from './ChartState';
-
-const { Title } = Typography;
+import { PageHeader } from './PageHeader';
+import { PanelUnderChart } from './PanelUnderChart';
 
 const { LOADING, ERROR, NEW_COVID_CASES, CUMULATIVE_COVID_ADMISSIONS,
-  COVID_SITUATION_IN_UK
-} = STRING_RESOURCES;
+  } = STRING_RESOURCES;
 
 enum ChartDivId {
   LEFT = "leftChart",
   RIGHT = "rightChart",
+  // add other chart here
 }
 
 /**
@@ -84,27 +81,21 @@ const Home = () => {
 
   return (
   <div className="App">
-    <Flex justify='space-between'>
-      <Title level={2}>{COVID_SITUATION_IN_UK}</Title>
-      <Flex gap="small" align="center">
-        <Button type="primary">Button</Button>
-        <Button type="dashed">Button 2</Button>
-        <Button type="default">Button 3</Button>
-      </Flex>
-    </Flex>
+    <PageHeader/>
     
-
     <Row gutter={16}>
-      <Col span={8}>
+      <Col span={12}>
         <Card title={NEW_COVID_CASES}>
           <ChartState chartState={chartLeftState} />           
           <div id={ChartDivId.LEFT}/>
+          <PanelUnderChart shortUserName="Ondra" avatarColor="#f56a00"/>
         </Card>
       </Col>
-      <Col span={8}>
+      <Col span={12}>
         <Card title={CUMULATIVE_COVID_ADMISSIONS}>
           <ChartState chartState={chartRightState} />  
           <div id={ChartDivId.RIGHT}/>
+          <PanelUnderChart shortUserName="Pavel" avatarColor="#7265e6"/>
         </Card>
       </Col>
     </Row>
