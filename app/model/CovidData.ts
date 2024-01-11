@@ -1,12 +1,13 @@
 export interface CovidData {
-    data: {
+    data: Array<{
         /**
+         * YYYY-MM-DD format
          * e.g. "2023-12-14"
          */
         date: string;
         newCases: number;
-        newDeaths: number;
-    },
+        cumAdmissions: number;
+    }>,
     length: number;
     maxPageLimit: number;
     pagination: {

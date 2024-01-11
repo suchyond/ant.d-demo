@@ -1,6 +1,7 @@
 import axios from "axios";
 import { CovidData } from "./model/CovidData";
 
+// Could be used for testing, e.g. in Storybook or something
 export interface Datasource<T> {
     getData(): Promise<T>;
 }

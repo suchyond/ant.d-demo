@@ -6,7 +6,7 @@ const RootLayout = ({ children }: React.PropsWithChildren) => (
   <html lang="en">
     <body>
       <Header style={{ color: "white" }}>
-        <h1>One hour demo for MSD</h1>
+        <h1>Demo for MSD</h1>
       </Header>
       <AntdRegistry>{children}</AntdRegistry>
     </body>
